@@ -2,16 +2,17 @@
 💻 UI IMPLEMENTATION: TABLET & LARGE SCREEN ADAPTIVE LAYOUTS
 ================================================================================
 
-[AI INSTRUCTION]
-Apply these patterns if the user specifies that the application targets tablets,
-iPads, or desktop/web viewports.
+[AI INSTRUCTION & ADAPTIVE ARCHITECTURE]
+Apply these native Flutter patterns for tablets, foldables, and desktops.
+Proportional zoom (e.g. ScreenUtil) is STRICTLY FORBIDDEN.
+Adapt the layout structure, columns, and navigation widgets based on available space.
 
 --------------------------------------------------------------------------------
-🪟 1. MASTER-DETAIL SPLIT PATTERN (TWO-PANE LAYOUT)
+🪟 1. MASTER-DETAIL MULTI-PANE PATTERN
 --------------------------------------------------------------------------------
 
-On compact screens, selecting an item navigates to a new full-screen detail view.
-On tablet/desktop screens (width >= 720dp), both the list and details sit side-by-side:
+On mobile (< 600dp), selecting an item pushes a new full-screen route.
+On tablet / desktop (>= 840dp), display a synchronized side-by-side pane:
 
 +------------------------------------------------------------------------------+
 | [Navigation Rail] | [Master Pane: 35%]   | [Detail Pane: 65%]                |
@@ -24,18 +25,20 @@ On tablet/desktop screens (width >= 720dp), both the list and details sit side-b
 
 
 --------------------------------------------------------------------------------
-🧭 2. ADAPTIVE NAVIGATION STRATEGY
+🧭 2. ADAPTIVE NAVIGATION WIDGETS
 --------------------------------------------------------------------------------
 
-• Phone (< 600dp)            : Bottom Navigation Bar with 3-5 destinations.
-• Tablet (600dp - 1024dp)    : Left vertical Navigation Rail to save vertical space.
-• Desktop / Web (> 1024dp)   : Permanent Left Navigation Drawer with full labels.
+• Mobile (< 600dp)            : BottomNavigationBar / NavigationBar.
+• Small Tablet (600 - 839dp)  : NavigationRail (vertical icon strip on left).
+• Large Tablet / Desktop (840dp+) : NavigationDrawer (expanded left panel with labels).
 
 
 --------------------------------------------------------------------------------
-📝 3. MULTI-COLUMN FORMS & DIALOGS
+📝 3. MULTI-COLUMN GRIDS & CONTENT BOUNDS
 --------------------------------------------------------------------------------
 
-• Multi-Column Forms: Two-column field pairings on wide viewports (First + Last Name).
-• Centered Modals   : Keep max dialog width at 480dp with a darkened backdrop.
+• Use GridView.builder with SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 320)
+  so columns increase naturally as screen widens without code change.
+• Enforce ConstrainedBox(constraints: BoxConstraints(maxWidth: 680)) on reading feeds
+  and form dialogs to prevent awkward horizontally stretched text.
 ================================================================================

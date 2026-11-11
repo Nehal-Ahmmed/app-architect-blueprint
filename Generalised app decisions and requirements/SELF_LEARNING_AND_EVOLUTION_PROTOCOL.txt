@@ -10,14 +10,22 @@ and animation patterns. If the user introduces or prefers something that was not
 previously recorded in the blueprint, you MUST update this knowledge base!
 
 --------------------------------------------------------------------------------
+📂 MODULAR HIERARCHY PERMISSION (SUB-SUB-SUB FOLDERS)
+--------------------------------------------------------------------------------
+USER EXPLICIT DIRECTIVE:
+You have FULL PERMISSION to create nested, modular folder hierarchies
+(e.g., folder/subfolder/sub-subfolder/...) whenever needed to preserve pristine
+modularity, organization, and clean separation of concerns as the blueprint grows.
+
+--------------------------------------------------------------------------------
 🔄 THE CONTINUOUS LEARNING LOOP
 --------------------------------------------------------------------------------
 
 [User Project Activity]
            │
            ▼
-[AI Detects New Tech / Pattern / Animation]
-(e.g., User selects Room, Supabase, Decompose, Custom Haptics, or Unique Animations)
+[AI Detects New Tech / Pattern / Animation / Architecture]
+(e.g. User selects Room, Supabase, Native Responsive Layouts, or Custom Shaders)
            │
            ▼
 [Is this already in the Blueprint Catalog?]
@@ -26,7 +34,8 @@ previously recorded in the blueprint, you MUST update this knowledge base!
      └──► [NO]  ──► 1. Add new entry to 'RECOMMENDED_LIBRARIES_CATALOG.txt'
                     2. Add cascading rule to 'TECH_STACK_MATRIX_AND_DEFAULTS.txt'
                     3. If UI/Animation: Add to 'COMPONENTS_SPEC_GUIDE.txt'
-                    4. Git commit & push updates to:
+                    4. Create sub-sub-sub folders if specialized modularity is needed.
+                    5. Git commit & push updates to:
                        https://github.com/Nehal-Ahmmed/app-architect-blueprint
 
 
@@ -41,10 +50,13 @@ previously recorded in the blueprint, you MUST update this knowledge base!
 
 2. Interaction & Animation Patterns:
    • New screen transition animations (e.g. shared axis, zoom, Cupertino slide).
-   • Button click feedback (e.g. bounce scale 0.95, ripple curves, tactile haptics).
-   -> Record exact transition curves and durations (e.g. 250ms easeOutCubic).
+   • Button click feedback (e.g. bounce scale 0.96, ripple curves, tactile haptics).
+   -> Record exact transition curves and durations (e.g. 280ms easeOutCubic).
 
-3. Project-Specific Wisdom:
+3. Responsive & Layout Paradigms:
+   • Record proven responsive templates (e.g. Native LayoutBuilder over ScreenUtil).
+
+4. Project-Specific Wisdom:
    • If a bug or edge-case was solved in a project (e.g. iOS Keychain token drop),
      record the preventive rule in 'Common Ux implementation/'.
 
@@ -55,6 +67,6 @@ previously recorded in the blueprint, you MUST update this knowledge base!
 Whenever new knowledge is synthesized:
 1. Update the local files in "Generalised app decisions and requirements/".
 2. Commit with message:
-   "chore(blueprint): auto-evolve catalog with [New Library / Animation Pattern]"
+   "chore(blueprint): auto-evolve catalog with [New Library / Pattern]"
 3. Push to origin main on GitHub so all future projects and devices inherit it!
 ================================================================================

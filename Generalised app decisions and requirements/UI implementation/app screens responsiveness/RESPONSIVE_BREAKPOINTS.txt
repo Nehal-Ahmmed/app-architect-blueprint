@@ -1,42 +1,92 @@
 ================================================================================
-📐 UI IMPLEMENTATION: RESPONSIVENESS & BREAKPOINTS
+📐 UI IMPLEMENTATION: RESPONSIVE & ADAPTIVE UI DESIGN SYSTEM
 ================================================================================
 
-[AI INSTRUCTION]
-Enforce responsive screen layouts across mobile, foldable, tablet, and desktop.
-Never let content stretch excessively across wide screens without max-width bounds.
+[AI INSTRUCTION & CRITICAL ARCHITECTURE RULE]
+• BANNED APPROACH: DO NOT USE `flutter_screenutil` (or proportional zoom scaling).
+  Proportional scaling (zooming font size, padding, margin, icon size) breaks on
+  tablets/desktops, makes UI cartoonish or illegible, and does not adapt layouts.
+• MANDATORY STANDARD: Flutter Native Responsive Layout + LayoutBuilder +
+  MediaQuery + Flexible/Expanded + Adaptive Breakpoints.
+• Layouts must change their structure, constraint, and available space rather
+  than just scaling pixel sizes.
 
 --------------------------------------------------------------------------------
-📏 1. DEVICE BREAKPOINT SYSTEM
+📏 1. MATERIAL WINDOW SIZE CLASS BREAKPOINTS
 --------------------------------------------------------------------------------
 
-+-----------------------------------+--------------------+---------------------+
-| Breakpoint Tier                   | Screen Width       | Layout Behavior     |
-+-----------------------------------+--------------------+---------------------+
-| Compact (Standard Smartphones)    | < 600dp            | Single column list, |
-|                                   |                    | Bottom Navigation   |
-+-----------------------------------+--------------------+---------------------+
-| Medium (Foldables / Small Tablets)| 600dp - 840dp      | Dual column grid,   |
-|                                   |                    | Left Navigation Rail|
-+-----------------------------------+--------------------+---------------------+
-| Expanded (Tablets / Desktop Web)  | > 840dp            | Master-Detail view, |
-|                                   |                    | Permanent Nav Drawer|
-+-----------------------------------+--------------------+---------------------+
++----------------------+--------------------+----------------------------------+
+| Breakpoint Tier      | Screen Width (dp)  | Structural Layout Behavior       |
++----------------------+--------------------+----------------------------------+
+| Compact (Mobile)     | < 600 dp           | 1-Column Feed, BottomNavBar      |
+| Medium (Small Tablet)| 600 – 839 dp       | 2-Column Grid, NavigationRail    |
+| Expanded (Lg Tablet) | 840 – 1199 dp      | Multi-Column, Persistent Drawer  |
+| Desktop (Large Screen| 1200+ dp           | Multi-Panel Master-Detail Split  |
++----------------------+--------------------+----------------------------------+
 
 
 --------------------------------------------------------------------------------
-🛠️ 2. RESPONSIVE DESIGN RULES
+🧱 2. NATIVE FLUTTER WIDGET ARSENAL (NO 3RD-PARTY SCALING)
 --------------------------------------------------------------------------------
 
-1. Max Content Width Constraint:
-   • On screens wider than 600dp, form pages and article feeds must be wrapped
-     in a centered container with maxWidth: 680dp to maintain optimal readability.
+1. LayoutBuilder (Most Important):
+   • Obtains parent BoxConstraints (maxWidth/maxHeight).
+   • Dynamically swaps layouts (MobileHome vs TabletHome vs DesktopHome).
 
-2. Adaptive Grid Systems:
-   • Mobile: 1 column list or 2 column card grid.
-   • Tablet: 3 or 4 column card grid with dynamic column spacing.
+2. MediaQuery:
+   • Reads screen orientation, system insets (keyboard, status bar), textScaleFactor.
 
-3. Fluid Typography:
-   • Scale heading font sizes dynamically using clamp or responsive layout builders,
-     preventing ugly text overflow on large displays.
+3. Expanded & Flexible:
+   • Distributes available space proportionally along MainAxisAlignment.
+   • Eliminates RenderFlex overflow errors entirely.
+
+4. Wrap:
+   • Auto-breaks tags, filter chips, and action buttons into next line when crowded.
+
+5. AspectRatio:
+   • Locks video players, product thumbnails, and cards to exact visual ratios (e.g. 16:9, 1:1).
+
+6. ConstrainedBox & FractionallySizedBox:
+   • Enforces maximum readability width (e.g. maxWidth: 680dp on tablet feeds).
+
+7. NavigationRail & NavigationDrawer:
+   • Replaces BottomNavigationBar on tablets/desktops to maximize vertical screen area.
+
+
+--------------------------------------------------------------------------------
+💻 3. PRODUCTION CODE TEMPLATE: LAYOUTBUILDER
+--------------------------------------------------------------------------------
+
+```dart
+class ResponsiveLayoutWrapper extends StatelessWidget {
+  const ResponsiveLayoutWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth;
+
+        if (width < 600) {
+          return const MobileLayout();        // 1 column + BottomNav
+        } else if (width < 840) {
+          return const SmallTabletLayout();   // 2 column + NavigationRail
+        } else if (width < 1200) {
+          return const LargeTabletLayout();   // 3 column + Persistent Drawer
+        } else {
+          return const DesktopMultiPanelLayout(); // Split multi-pane
+        }
+      },
+    );
+  }
+}
+```
+
+--------------------------------------------------------------------------------
+🎨 4. DESIGN TOKENS (REASONABLE FIXED SCALES, NOT ZOOMED)
+--------------------------------------------------------------------------------
+• Fonts: Headline (24-32sp), Subtitle (18-20sp), Body (14-16sp), Caption (12sp).
+• Paddings: Strict 8pt grid tokens (8dp, 16dp, 24dp, 32dp).
+• Icons: Small (16dp), Standard (24dp), Action (32dp), Hero (48dp).
+• Never scale fonts or paddings by screen width percentages!
 ================================================================================

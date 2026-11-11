@@ -52,6 +52,9 @@ library -- display the full pre-populated manifest and ask for confirmation.
 * Serialization    : freezed + json_serializable
   - Why: Immutable data classes, copyWith, pattern matching, auto JSON mapping.
 
+* UI & Responsive  : 100% Native Flutter (LayoutBuilder, MediaQuery, Expanded/Flexible)
+  - Why: Adaptive breakpoints (600/840/1200dp). ScreenUtil zoom-scaling is strictly excluded.
+
 * Architecture     : Feature-First Clean Architecture
   - Structure: core/ + features/<feature>/{presentation, domain, data}
 
