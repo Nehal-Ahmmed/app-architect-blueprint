@@ -1,0 +1,76 @@
+================================================================================
+🌐 COMMON UX: API INTEGRATION & NETWORK STANDARDS
+================================================================================
+
+[AI INSTRUCTION]
+Use these networking standards for all client-to-server communication.
+Ensure token refresh interceptors, retry policies, and error handling are standardized.
+
+--------------------------------------------------------------------------------
+🔒 1. JWT TOKEN REFRESH & INTERCEPTOR WORKFLOW
+--------------------------------------------------------------------------------
+
+When making authenticated requests, implement a thread-safe refresh mechanism:
+
+[App Network Client]
+       │  1. Request GET /api/v1/profile (with Access Token)
+       ▼
+[Auth Interceptor] ──► [Backend Server]
+                             │
+                             ▼ (401 Unauthorized - Token Expired)
+                       [Auth Interceptor]
+                             │
+                             ├──► Locks all outgoing requests into a Queue
+                             │
+                             ▼  2. POST /api/v1/auth/refresh (with Refresh Token)
+                       [Backend Server]
+                             │
+            ┌────────────────┴────────────────┐
+            ▼                                 ▼
+   [200 OK: New Tokens]              [401: Refresh Token Expired]
+            │                                 │
+   • Save to Secure Storage          • Clear Secure Storage
+   • Re-send original request        • Broadcast Force Logout
+   • Flush queued requests           • Redirect user to /login
+
+
+--------------------------------------------------------------------------------
+📦 2. STANDARDIZED API RESPONSE ENVELOPE
+--------------------------------------------------------------------------------
+
+[Success Response (HTTP 200/201)]
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Resource fetched successfully",
+  "data": { ... },
+  "error": null,
+  "timestamp": "2026-11-11T18:30:00Z"
+}
+
+[Error Response (HTTP 400/404/500)]
+{
+  "success": false,
+  "statusCode": 400,
+  "message": "Validation failed",
+  "data": null,
+  "error": {
+    "code": "INVALID_INPUT",
+    "details": [
+      { "field": "email", "issue": "Invalid email address format" }
+    ]
+  },
+  "timestamp": "2026-11-11T18:30:00Z"
+}
+
+
+--------------------------------------------------------------------------------
+⏱️ 3. TIMEOUT & RETRY RULES
+--------------------------------------------------------------------------------
+
+• Connect Timeout   : 10 seconds.
+• Receive Timeout   : 15 seconds.
+• Idempotent Retry  : Only retry GET, PUT, DELETE requests up to 3 times with
+                      exponential backoff (1s, 2s, 4s). Never automatically retry
+                      POST requests without idempotency keys.
+================================================================================

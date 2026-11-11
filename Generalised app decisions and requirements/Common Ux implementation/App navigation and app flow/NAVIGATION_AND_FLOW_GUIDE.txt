@@ -1,0 +1,53 @@
+================================================================================
+🧭 COMMON UX: APP NAVIGATION & FLOW ARCHITECTURE
+================================================================================
+
+[AI INSTRUCTION]
+Define clear navigation hierarchies, route guards, and backstack behavior for
+the project.
+
+--------------------------------------------------------------------------------
+🚦 1. ROUTE GUARD & AUTHENTICATION REDIRECT FLOW
+--------------------------------------------------------------------------------
+
+All top-level navigators must implement a reactive redirect hook that listens
+to authentication state:
+
+[User Navigates to Route]
+           │
+           ▼
+[Is User Authenticated?]
+     │
+     ├──► [YES] ──► Target == /login or /splash?
+     │                ├──► [YES] ──► Redirect to /home (Dashboard)
+     │                └──► [NO]  ──► Allow Access to Target Screen
+     │
+     └──► [NO]  ──► Is Target Route Protected?
+                      ├──► [YES] ──► Redirect to /login?redirect={target}
+                      └──► [NO]  ──► Allow Access to Public Screen (e.g. Terms)
+
+
+--------------------------------------------------------------------------------
+🔗 2. DEEP LINKING SPECIFICATION
+--------------------------------------------------------------------------------
+
+• Platform Schemes:
+  - Android: App Links (https://app.domain.com/path) & Custom Scheme (appscheme://path)
+  - iOS    : Universal Links (apple-app-site-association)
+
+• Standard Deep Link Routing Table:
+  - /product/:id    ──► Opens Product Details Screen.
+  - /order/:orderId ──► Opens Order Tracking Screen.
+  - /invite?code=X  ──► Opens Registration with pre-filled referral code.
+
+
+--------------------------------------------------------------------------------
+🔄 3. TAB NAVIGATION & STATE PRESERVATION
+--------------------------------------------------------------------------------
+
+• Preserve Tab State: Each tab in the Bottom Navigation Bar (Home, Search, Orders,
+  Profile) must preserve its internal scroll position and state when switching tabs.
+• System Back Handling: Pressing system back inside a sub-screen navigates back
+  within that tab's stack. Pressing back on the root tab switches to the primary
+  tab (Home) before prompting to exit the app.
+================================================================================

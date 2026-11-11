@@ -1,0 +1,76 @@
+================================================================================
+📱 MASTER APP DEVELOPMENT FLOW & DECISION MANIFEST
+================================================================================
+[MASTER TRACKING FILE: Read and updated by Decisions Chat and Impl Chats]
+
++------------------------------------------------------------------------------+
+| 📦 [CARD 1: PROJECT METADATA]                                                |
+| • App Name     : [APP_NAME]                                                  |
+| • Concept      : [1-LINE_CONCEPT]                                            |
+| • Target OS    : [Android / iOS / Web / Desktop]                             |
+| • Framework    : [FRAMEWORK] ([LANGUAGE])                                    |
+| • Architecture : [ARCHITECTURE_PATTERN] (e.g. Feature-First MVVM / Clean)    |
+| • Design Path  : [DESIGN_FOLDER_PATH_OR_PROCESS_FILE]                        |
++------------------------------------------------------------------------------+
+
++------------------------------------------------------------------------------+
+| ⚙️ [CARD 2: CONFIRMED TECH STACK (NAMES ONLY)]                                |
+| • State Mgmt   : [STATE_LIBRARY]                                             |
+| • Navigation   : [NAVIGATION_LIBRARY]                                        |
+| • Networking   : [NETWORK_LIBRARY]                                           |
+| • Local DB     : [DATABASE_LIBRARY]                                          |
+| • Secure Store : [SECURE_STORAGE_LIBRARY]                                    |
+| • Models/Serial: [SERIALIZATION_LIBRARY]                                     |
+| • DI Engine    : [DEPENDENCY_INJECTION_LIBRARY]                              |
++------------------------------------------------------------------------------+
+
++------------------------------------------------------------------------------+
+| 📂 [CARD 3: FOLDER STRUCTURE SKELETON]                                        |
+| lib/ (or app/src/main/...)                                                   |
+| ├── core/                                                                    |
+| │   ├── network/                                                             |
+| │   ├── theme/                                                               |
+| │   ├── storage/                                                             |
+| │   └── router/                                                              |
+| ├── components/       <-- Built in Plan 1 (Atoms, buttons, inputs, cards)    |
+| └── features/                                                                |
+|     └── [feature]/                                                           |
+|         ├── data/     <-- Built in Plan 3 (DTOs, API, Repo Impl)             |
+|         ├── domain/   <-- Built in Plan 4 (Entities, UseCases, Contracts)    |
+|         └── presentation/                                                    |
+|             ├── views/       <-- Built in Plan 2 (UI Screens from Design)    |
+|             └── controllers/ <-- Built in Plan 5 (ViewModels & UI Binding)   |
++------------------------------------------------------------------------------+
+
++------------------------------------------------------------------------------+
+| 📋 [CARD 4: SERIAL IMPLEMENTATION PROGRESS (TICK BOXES)]                     |
+|                                                                              |
+| [ ] Plan 1: UI Components Creation (From Design)                             |
+|     • Extract and build all atoms, buttons, text fields, cards, dialogs.     |
+|     • Chat: Impl Chat 01                                                     |
+|                                                                              |
+| [ ] Plan 2: UI Pages & Screens Assembly (From Design)                        |
+|     • Assemble pre-made components into full screen layouts.                 |
+|     • Static mock data only; routing setup.                                  |
+|     • Chat: Impl Chat 02                                                     |
+|                                                                              |
+| [ ] Plan 3: Feature Data Layer                                               |
+|     • DTO models with JSON serialization.                                    |
+|     • API services, remote sources, local DB DAOs, repositories impl.        |
+|     • Chat: Impl Chat 03                                                     |
+|                                                                              |
+| [ ] Plan 4: Feature Domain Layer                                             |
+|     • Pure domain entities and abstract repository contracts.                |
+|     • Single-responsibility UseCases for all business logic.                 |
+|     • Chat: Impl Chat 04                                                     |
+|                                                                              |
+| [ ] Plan 5: Feature Presentation Layer & UI Connection                       |
+|     • ViewModels / Providers with immutable UiState (Loading/Error/Success). |
+|     • Connect ViewModels to the UI pages created in Plan 2.                  |
+|     • Replace mock data with live streams; app is 100% fully functional.     |
+|     • Chat: Impl Chat 05                                                     |
++------------------------------------------------------------------------------+
+
+[INSTRUCTION FOR IMPL CHATS]:
+When your task is complete and verified, change your target [ ] into [x].
+================================================================================

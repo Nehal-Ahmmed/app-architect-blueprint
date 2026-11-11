@@ -1,0 +1,41 @@
+================================================================================
+💻 UI IMPLEMENTATION: TABLET & LARGE SCREEN ADAPTIVE LAYOUTS
+================================================================================
+
+[AI INSTRUCTION]
+Apply these patterns if the user specifies that the application targets tablets,
+iPads, or desktop/web viewports.
+
+--------------------------------------------------------------------------------
+🪟 1. MASTER-DETAIL SPLIT PATTERN (TWO-PANE LAYOUT)
+--------------------------------------------------------------------------------
+
+On compact screens, selecting an item navigates to a new full-screen detail view.
+On tablet/desktop screens (width >= 720dp), both the list and details sit side-by-side:
+
++------------------------------------------------------------------------------+
+| [Navigation Rail] | [Master Pane: 35%]   | [Detail Pane: 65%]                |
+|                   |                      |                                   |
+| Home              | Item 1 (Selected)    | Item 1 Full Detail & Actions      |
+| Messages          | Item 2               | Interactive controls              |
+| Settings          | Item 3               | Analytics / Statistics            |
+|                   | Item 4               |                                   |
++------------------------------------------------------------------------------+
+
+
+--------------------------------------------------------------------------------
+🧭 2. ADAPTIVE NAVIGATION STRATEGY
+--------------------------------------------------------------------------------
+
+• Phone (< 600dp)            : Bottom Navigation Bar with 3-5 destinations.
+• Tablet (600dp - 1024dp)    : Left vertical Navigation Rail to save vertical space.
+• Desktop / Web (> 1024dp)   : Permanent Left Navigation Drawer with full labels.
+
+
+--------------------------------------------------------------------------------
+📝 3. MULTI-COLUMN FORMS & DIALOGS
+--------------------------------------------------------------------------------
+
+• Multi-Column Forms: Two-column field pairings on wide viewports (First + Last Name).
+• Centered Modals   : Keep max dialog width at 480dp with a darkened backdrop.
+================================================================================

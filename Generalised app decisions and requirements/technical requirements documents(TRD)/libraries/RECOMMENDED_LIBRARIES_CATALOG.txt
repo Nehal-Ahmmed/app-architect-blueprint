@@ -1,0 +1,89 @@
+================================================================================
+📚 TRD: RECOMMENDED LIBRARIES & COMPARISON CATALOG
+================================================================================
+
+[AI INSTRUCTION]
+Use this catalog whenever the user asks to customize or swap any library from
+the default preset. Explain trade-offs concisely and record the final selected
+libraries in the output.
+
+--------------------------------------------------------------------------------
+🧭 1. STATE MANAGEMENT COMPARISON
+--------------------------------------------------------------------------------
+
+[Flutter]
++-----------------------------+-----------------------------------+--------------------+
+| Library                     | Pros & Characteristics            | Recommendation     |
++-----------------------------+-----------------------------------+--------------------+
+| Riverpod (v2 + Generator)   | Compile-safe, no BuildContext,    | [PRIMARY DEFAULT]  |
+|                             | auto-dispose, easy mocking        | ⭐⭐⭐⭐⭐         |
++-----------------------------+-----------------------------------+--------------------+
+| BLoC / Cubit                | Predictable event-driven flow,    | Solid Alternative  |
+|                             | strict separation of concerns     | ⭐⭐⭐⭐           |
++-----------------------------+-----------------------------------+--------------------+
+| Provider                    | Simple to learn, built-in         | Legacy / Simple    |
+|                             | ecosystem support                 | ⭐⭐⭐             |
++-----------------------------+-----------------------------------+--------------------+
+
+[Android (Kotlin) / Compose]
++-----------------------------+-----------------------------------+--------------------+
+| Pattern / Tool              | Pros & Characteristics            | Recommendation     |
++-----------------------------+-----------------------------------+--------------------+
+| MVI with StateFlow + UiState| Unidirectional Data Flow (UDF),   | [PRIMARY DEFAULT]  |
+|                             | single source of truth, testable  | ⭐⭐⭐⭐⭐         |
++-----------------------------+-----------------------------------+--------------------+
+| MVVM with LiveData / Flow   | Standard, familiar to developers  | Solid Alternative  |
+|                             |                                   | ⭐⭐⭐⭐           |
++-----------------------------+-----------------------------------+--------------------+
+
+
+--------------------------------------------------------------------------------
+🗺️ 2. NAVIGATION & ROUTING
+--------------------------------------------------------------------------------
+
+[Flutter]
+• go_router     : Declarative, URL-based, deep link parsing, dynamic auth guards.
+                  Status: [PRIMARY DEFAULT] ⭐⭐⭐⭐⭐
+• auto_route    : Compile-time route generation, strong typing.
+                  Status: Alternative ⭐⭐⭐⭐
+
+[Android (Kotlin)]
+• Navigation 3  : Modern Kotlin DSL, type-safe backstack, multiplatform-ready.
+  (Nav3)          Status: [PRIMARY DEFAULT] ⭐⭐⭐⭐⭐
+• Nav Compose   : Traditional Jetpack Navigation for Compose.
+                  Status: Alternative ⭐⭐⭐⭐
+• Voyager       : ScreenModel architecture, multiplatform tab/stack navigation.
+                  Status: [PRIMARY DEFAULT FOR KMP] ⭐⭐⭐⭐⭐
+
+
+--------------------------------------------------------------------------------
+🌐 3. NETWORKING & HTTP CLIENTS
+--------------------------------------------------------------------------------
+
+• Flutter      : dio + retrofit (Interceptors, retry policies, progress tracking)
+                 Status: [PRIMARY DEFAULT]
+• Kotlin       : Ktor Client or Retrofit 2 + Kotlinx Serialization (Coroutine-first)
+                 Status: [PRIMARY DEFAULT]
+• Spring Boot  : RestClient (Spring 6) or WebClient (Reactive non-blocking)
+                 Status: [PRIMARY DEFAULT]
+
+
+--------------------------------------------------------------------------------
+💾 4. LOCAL PERSISTENCE & DATABASE
+--------------------------------------------------------------------------------
+
+• Flutter (Fast NoSQL)   : isar / hive_ce (Fast key-value, caching, offline feeds)
+• Flutter (Relational)   : drift (SQLite ORM with type-safe Dart queries)
+• Android Native         : Jetpack Room with KSP (Google standard SQLite ORM + Flow)
+• Kotlin Multiplatform   : SQLDelight or Room KMP (Cross-platform SQL generator)
+• Backend (Relational)   : PostgreSQL + Spring Data JPA (ACID transactions)
+
+
+--------------------------------------------------------------------------------
+🔐 5. SECURE STORAGE (TOKENS & CREDENTIALS)
+--------------------------------------------------------------------------------
+
+• Flutter      : flutter_secure_storage (Android KeyStore + iOS Keychain)
+• Android      : EncryptedSharedPreferences (Jetpack Security MasterKey AES-256)
+• Spring Boot  : Spring Security Crypto (BCrypt) + Vault / Environment Secrets
+================================================================================

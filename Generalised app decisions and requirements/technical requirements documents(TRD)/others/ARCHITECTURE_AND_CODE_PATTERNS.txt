@@ -1,0 +1,80 @@
+================================================================================
+🏗️ TRD: ARCHITECTURE & CODE PATTERNS
+================================================================================
+
+[AI INSTRUCTION]
+Use these architectural standards when generating project folder layouts and
+code scaffolding. Default to Feature-First Clean Architecture for mobile apps,
+and Layered Hexagonal Architecture for backend systems.
+
+--------------------------------------------------------------------------------
+🏛️ 1. MOBILE ARCHITECTURE: FEATURE-FIRST CLEAN ARCHITECTURE
+--------------------------------------------------------------------------------
+
+lib/ (or app/src/main/kotlin/...)
+├── core/
+│   ├── network/          <-- Dio / Ktor client, interceptors, error handler
+│   ├── theme/            <-- Color tokens, typography, dark/light definitions
+│   ├── storage/          <-- Secure storage wrapper, local DB client
+│   ├── router/           <-- App routes, guards, transitions
+│   └── utils/            <-- Helpers, extensions, formatting
+│
+└── features/
+    └── [feature_name]/   <-- (e.g., auth, products, profile, checkout)
+        ├── data/
+        │   ├── datasources/   <-- Remote API service & local DB cache DAO
+        │   ├── models/        <-- DTOs with JSON serialization
+        │   └── repositories/  <-- Repository implementation
+        │
+        ├── domain/
+        │   ├── entities/      <-- Pure business objects (framework agnostic)
+        │   ├── repositories/  <-- Abstract repository interfaces / contracts
+        │   └── usecases/      <-- Single-responsibility business actions
+        │
+        └── presentation/
+            ├── controllers/   <-- State notifier, Riverpod provider, or ViewModel
+            ├── views/         <-- Screens, Pages, Scaffolds
+            └── widgets/       <-- Feature-specific reusable UI components
+
+
+--------------------------------------------------------------------------------
+🔁 2. DATA FLOW & ERROR HANDLING (THE RESULT PATTERN)
+--------------------------------------------------------------------------------
+
+Never throw raw unhandled exceptions into the UI layer. All repository calls
+must return a functional Result or Either<Failure, T> object:
+
+[Presentation (UI / ViewModel)]
+           │  1. Execute UseCase(params)
+           ▼
+[Domain (UseCase)]
+           │  2. Fetch data()
+           ▼
+[Data (Repository)]
+           │  3. HTTP GET /endpoint
+           ▼
+[Remote API Data Source]
+           │
+           ├──► [200 OK] ──► Map DTO to Domain Entity ──► Success(Entity) ──► UiState.Success
+           │
+           └──► [404/500/Timeout] ──► AppException ──► Failure(AppException) ──► UiState.Error
+
+
+--------------------------------------------------------------------------------
+🍃 3. BACKEND ARCHITECTURE: SPRING BOOT LAYERED ARCHITECTURE
+--------------------------------------------------------------------------------
+
+src/main/java/com/app/
+├── config/              <-- SecurityConfig, CorsConfig, RedisConfig, SwaggerConfig
+├── security/            <-- JwtAuthFilter, JwtTokenProvider, CustomUserDetailsService
+├── common/
+│   ├── exception/       <-- GlobalExceptionHandler, ApiException
+│   └── response/        <-- ApiResponse<T> standardized wrapper envelope
+└── modules/
+    └── [module_name]/   <-- (e.g., user, product, order)
+        ├── controller/  <-- REST Endpoints (@RestController)
+        ├── service/     <-- Business Logic Interfaces & Implementation
+        ├── repository/  <-- Spring Data JPA Repositories
+        ├── entity/      <-- Hibernate @Entity classes (DB Tables)
+        └── dto/         <-- Request & Response records / DTOs
+================================================================================

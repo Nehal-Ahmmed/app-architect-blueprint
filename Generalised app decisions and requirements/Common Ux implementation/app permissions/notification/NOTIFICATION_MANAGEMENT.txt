@@ -1,0 +1,49 @@
+================================================================================
+🔔 COMMON UX: NOTIFICATION MANAGEMENT ARCHITECTURE
+================================================================================
+
+[AI INSTRUCTION]
+Define clear push and local notification strategies, permission requesting
+protocols, and deep link routing.
+
+--------------------------------------------------------------------------------
+📬 1. DUAL NOTIFICATION CHANNELS
+--------------------------------------------------------------------------------
+
+[Remote Server Event] ──► [Push Notification: FCM / APNs]
+                                  │
+[Local Scheduled Event] ──► [Local Alarm Notification]
+                                  │
+                                  ▼
+                            [App State?]
+                                  │
+              ┌───────────────────┴───────────────────┐
+              ▼                                       ▼
+    [Foreground Active]                     [Background / Terminated]
+              │                                       │
+     In-App Toast Banner                    OS System Notification Tray
+                                                      │
+                                                      ▼ (User Taps)
+                                            Deep Link Router -> Target Screen
+
+
+--------------------------------------------------------------------------------
+🏷️ 2. ANDROID NOTIFICATION CHANNELS (REQUIRED ON ANDROID 8.0+)
+--------------------------------------------------------------------------------
+
+Must define explicit notification channels with user-configurable importance:
+1. channel_orders     : Importance High (Sound, vibration, heads-up banner).
+2. channel_promotions : Importance Default (Silent or subtle sound).
+3. channel_reminders  : Importance High (Local scheduled alarms).
+
+
+--------------------------------------------------------------------------------
+🎯 3. PERMISSION REQUEST BEST PRACTICES
+--------------------------------------------------------------------------------
+
+• Never ask on splash screen: Never trigger the OS permission prompt on initial app open.
+• Contextual trigger: Ask when user performs an action that benefits from notifications
+  (e.g., after placing an order or toggling reminder switches).
+• Custom Pre-Permission Modal: Show a friendly in-app card explaining why notifications
+  benefit the user before triggering the OS prompt.
+================================================================================

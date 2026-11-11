@@ -1,0 +1,76 @@
+================================================================================
+🧩 UI IMPLEMENTATION: APP COMPONENTS DESIGN SYSTEM
+================================================================================
+
+[AI INSTRUCTION & COMPONENT-FIRST RULE]
+When inspecting the project's UI design folder (or reading the detailed app explanation),
+you MUST extract and plan all reusable components FIRST before designing any full screen.
+Pages must be composed by assembling these pre-planned atomic and molecular components.
+Never write ad-hoc button or input styling directly inside page widgets.
+
+--------------------------------------------------------------------------------
+🔍 1. COMPONENT-FIRST EXTRACTION FROM DESIGNS
+--------------------------------------------------------------------------------
+
+[UI Design Folder / App Explanation]
+           │
+           ▼
+[Step 1: Scan all screens & identify common visual patterns]
+           │
+           ▼
+[Step 2: Extract & Build Reusable Component Library FIRST]
+  ├── Atoms    : Color tokens, Typography, Icons, Dividers, Badges
+  ├── Molecules: Primary Button, Input Field, Search Bar, Card Tile, Rating Bar
+  └── Organisms: Header App Bar, Bottom Navigation Bar, Modal Bottom Sheet
+           │
+           ▼
+[Step 3: Assemble Screens using the Reusable Component Library]
+  (Splash, Onboarding, Feed, Details, Cart, Profile, Settings)
+
+
+--------------------------------------------------------------------------------
+🧱 2. CORE COMPONENT CATALOG & SPECIFICATIONS
+--------------------------------------------------------------------------------
+
+1. Buttons & Call-to-Actions (CTAs)
+   • Primary Button   : Full brand accent, minimum touch target height 48dp
+                        (WCAG accessible), rounded radius matching design style.
+                        Must support loading spinner state.
+   • Outlined Button  : 1.5px border matching primary accent, transparent background.
+   • Ghost / Text     : Transparent background, text highlight with ripple effect.
+   • Icon Button      : Symmetrical touch target (min 44x44dp), tooltipped on long press.
+
+2. Input Fields & Forms
+   • Text Field       : Label, placeholder, optional leading icon, trailing clear
+                        or visibility toggle, helper/error text below.
+   • States           : Default, Focused (accent border + glow), Error (#EF4444),
+                        Disabled (opacity 0.4).
+   • Input Formatting : Phone masks, currency formatting, auto-advancing OTP fields.
+
+3. Cards & Containers
+   • Standard padding : 16dp.
+   • Styling          : Elevated or bordered according to the chosen UI aesthetic
+                        (Claymorphism, Glassmorphism, Material 3, etc.).
+   • Tap Feedback     : Haptic vibration (light impact) and subtle scale (scale 0.98).
+
+4. Dialogs & Bottom Sheets
+   • Bottom Sheet     : Draggable dismiss handle, rounded top corners (24dp),
+                        dimmed backdrop (rgba(0, 0, 0, 0.5)).
+   • Confirmation Box : Centered modal, max width 400dp, clear primary and cancel actions.
+   • Toast / Snackbar : Floating banner, rounded corners, auto-dismiss in 3s with Undo.
+
+
+--------------------------------------------------------------------------------
+📏 3. DESIGN TOKENS MATRIX
+--------------------------------------------------------------------------------
+
++--------------------+---------------------------------------------------------+
+| Token Category     | Values / Scale                                          |
++--------------------+---------------------------------------------------------+
+| Spacing Scale      | 4dp, 8dp, 12dp, 16dp, 24dp, 32dp, 48dp, 64dp            |
+| Typography Scale   | Display (32sp), Headline (24sp), Title (18sp),          |
+|                    | Body (14sp), Caption (12sp)                             |
+| Min Touch Targets  | 48x48dp for all interactive elements (WCAG AAA)         |
+| Icon Sizes         | Small (16dp), Standard (24dp), Large (32dp), Hero (48dp)|
++--------------------+---------------------------------------------------------+
+================================================================================

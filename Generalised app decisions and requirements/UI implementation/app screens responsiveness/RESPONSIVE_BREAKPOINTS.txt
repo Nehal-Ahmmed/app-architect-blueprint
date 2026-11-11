@@ -1,0 +1,42 @@
+================================================================================
+📐 UI IMPLEMENTATION: RESPONSIVENESS & BREAKPOINTS
+================================================================================
+
+[AI INSTRUCTION]
+Enforce responsive screen layouts across mobile, foldable, tablet, and desktop.
+Never let content stretch excessively across wide screens without max-width bounds.
+
+--------------------------------------------------------------------------------
+📏 1. DEVICE BREAKPOINT SYSTEM
+--------------------------------------------------------------------------------
+
++-----------------------------------+--------------------+---------------------+
+| Breakpoint Tier                   | Screen Width       | Layout Behavior     |
++-----------------------------------+--------------------+---------------------+
+| Compact (Standard Smartphones)    | < 600dp            | Single column list, |
+|                                   |                    | Bottom Navigation   |
++-----------------------------------+--------------------+---------------------+
+| Medium (Foldables / Small Tablets)| 600dp - 840dp      | Dual column grid,   |
+|                                   |                    | Left Navigation Rail|
++-----------------------------------+--------------------+---------------------+
+| Expanded (Tablets / Desktop Web)  | > 840dp            | Master-Detail view, |
+|                                   |                    | Permanent Nav Drawer|
++-----------------------------------+--------------------+---------------------+
+
+
+--------------------------------------------------------------------------------
+🛠️ 2. RESPONSIVE DESIGN RULES
+--------------------------------------------------------------------------------
+
+1. Max Content Width Constraint:
+   • On screens wider than 600dp, form pages and article feeds must be wrapped
+     in a centered container with maxWidth: 680dp to maintain optimal readability.
+
+2. Adaptive Grid Systems:
+   • Mobile: 1 column list or 2 column card grid.
+   • Tablet: 3 or 4 column card grid with dynamic column spacing.
+
+3. Fluid Typography:
+   • Scale heading font sizes dynamically using clamp or responsive layout builders,
+     preventing ugly text overflow on large displays.
+================================================================================

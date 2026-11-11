@@ -1,0 +1,47 @@
+================================================================================
+🛡️ COMMON UX: RUNTIME PERMISSIONS ARCHITECTURE
+================================================================================
+
+[AI INSTRUCTION]
+Define graceful permission request flows. Prevent user drop-off caused by abrupt
+permission denials.
+
+--------------------------------------------------------------------------------
+🚦 1. PERMISSION REQUEST LIFECYCLE
+--------------------------------------------------------------------------------
+
+[User Taps Action (e.g. Camera)]
+           │
+           ▼
+[Permission Already Granted?]
+     │
+     ├──► [YES] ──► Execute Camera Feature Immediately
+     │
+     └──► [NO]  ──► Show Custom Pre-Permission Rationale Modal
+                          │
+                          ▼ (User Taps 'Continue')
+                    Trigger OS System Permission Dialog
+                          │
+         ┌────────────────┴────────────────┐
+         ▼                                 ▼
+   [OS GRANTED]                      [OS DENIED]
+         │                                 │
+   Execute Feature                   [Denied Once] ──► Show soft fallback toast
+                                     [Permanently Denied] ──► "Open App Settings"
+
+
+--------------------------------------------------------------------------------
+📋 2. SUPPORTED RUNTIME PERMISSIONS & FALLBACKS
+--------------------------------------------------------------------------------
+
+• Camera        : Scanner, profile photos.
+                  Fallback: Allow gallery image upload or manual code entry.
+• Photo Storage : Selecting attachments.
+                  Fallback: Disable image upload button with helpful tooltip.
+• Location      : Nearest store finder, delivery tracking.
+                  Fallback: Manual postal code / city text search.
+• Microphone    : Voice notes, audio search.
+                  Fallback: Standard keyboard text input.
+• Biometrics    : Fast app unlock.
+                  Fallback: Master password / PIN login screen.
+================================================================================

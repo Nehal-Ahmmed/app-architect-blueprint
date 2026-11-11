@@ -1,0 +1,43 @@
+================================================================================
+⚡ COMMON UX: DATA CACHING STRATEGY
+================================================================================
+
+[AI INSTRUCTION]
+Define clear caching tiers to balance offline usability, network efficiency,
+and data freshness.
+
+--------------------------------------------------------------------------------
+🗄️ 1. MULTI-TIER CACHE ARCHITECTURE
+--------------------------------------------------------------------------------
+
+[Data Request from UI]
+           │
+           ├──► [L1: In-Memory Cache (RAM)] ──────► [Cache Hit: Return in 0ms]
+           │         │ (Miss)
+           │         ▼
+           ├──► [L2: Local Persistent Cache] ─────► [Cache Hit: Return in 5ms]
+           │         │ (Miss)
+           │         ▼
+           └──► [L3: Remote Network API]
+                     │ (Fetch Fresh)
+                     ├──► Write into L2 Disk Cache
+                     ├──► Write into L1 RAM Cache
+                     └──► Return to UI
+
+
+--------------------------------------------------------------------------------
+⏱️ 2. CACHING POLICIES BY DATA TYPE
+--------------------------------------------------------------------------------
+
++---------------------------+------------------------+-----------+---------------------+
+| Data Category             | Storage Location       | TTL       | Invalidation Rule   |
++---------------------------+------------------------+-----------+---------------------+
+| User Profile & Settings   | Local DB / Secure Store| 24 Hours  | Profile update / edit|
+| Activity Feed / Listings  | Local DB / Memory      | 15 Mins   | Pull-to-refresh     |
+| Images & Media Assets     | Disk Cache (LRU)       | 7 Days    | Max 150MB limit     |
+| Reference Data (Cities)   | Local DB               | 7 Days    | Remote config check |
++---------------------------+------------------------+-----------+---------------------+
+
+• Stale-While-Revalidate: Return cached data instantly to prevent UI loading spinners,
+  then silently fetch fresh data from network in background and update if changed.
+================================================================================

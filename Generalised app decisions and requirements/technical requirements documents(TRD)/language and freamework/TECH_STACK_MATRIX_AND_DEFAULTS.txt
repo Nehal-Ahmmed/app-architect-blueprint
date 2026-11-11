@@ -1,0 +1,132 @@
+================================================================================
+⚙️ TECHNICAL REQUIREMENTS (TRD): LANGUAGE & FRAMEWORK MATRIX
+================================================================================
+
+[AI INSTRUCTION]
+When conducting the tech stack interview, ask the user to choose their primary
+framework. Once selected, immediately inject the corresponding cascading default
+stack into the recommendation table. Do not ask individual questions for each
+library -- display the full pre-populated manifest and ask for confirmation.
+
+--------------------------------------------------------------------------------
+🎯 FRAMEWORK PRESETS & CASCADING RULES
+--------------------------------------------------------------------------------
+
+[User Selects Framework]
+           │
+           ├──► [Flutter (Dart)]
+           │      └── Preset 1: Riverpod + GoRouter + Dio + Isar + SecureStorage
+           │
+           ├──► [Android Native / Jetpack Compose (Kotlin)]
+           │      └── Preset 2: Compose + Nav3 + Koin/Hilt + Room + Ktor/Retrofit
+           │
+           ├──► [Kotlin Multiplatform (KMP)]
+           │      └── Preset 3: Compose MP + Voyager/Nav3 + Ktor + SQLDelight
+           │
+           └──► [Spring Boot (Java / Kotlin)]
+                  └── Preset 4: Spring Boot 3.x + JPA/Postgres + Security JWT + Redis
+
+
+================================================================================
+1️⃣ PRESET: FLUTTER & DART (CROSS-PLATFORM MOBILE & DESKTOP)
+================================================================================
+• Target Platforms : Android, iOS, Web, Desktop (Windows, macOS, Linux)
+• Language & SDK   : Dart 3.x / Flutter 3.x+ (Sound Null Safety)
+
+[CASCADING DEFAULTS]
+* State Management : flutter_riverpod + riverpod_annotation (v2.x with code generation)
+  - Why: Compile-safe, no BuildContext dependency, auto-disposal, easily testable.
+
+* Navigation       : go_router
+  - Why: Declarative URL routing, deep link parsing, dynamic redirect guards on auth.
+
+* Networking       : dio + retrofit + pretty_dio_logger
+  - Why: Interceptors for auto JWT refresh tokens, retry policies, progress tracking.
+
+* Local Database   : isar or hive_ce
+  - Why: Ultra-fast NoSQL storage on device, zero native bridge overhead.
+
+* Secure Storage   : flutter_secure_storage
+  - Why: Hardware-backed KeyStore on Android, Keychain on iOS, Protected Data on Win.
+
+* Serialization    : freezed + json_serializable
+  - Why: Immutable data classes, copyWith, pattern matching, auto JSON mapping.
+
+* Architecture     : Feature-First Clean Architecture
+  - Structure: core/ + features/<feature>/{presentation, domain, data}
+
+
+================================================================================
+2️⃣ PRESET: ANDROID NATIVE / JETPACK COMPOSE (KOTLIN)
+================================================================================
+• Target Platforms : Android (Phone, Tablet, Foldable, WearOS)
+• Language & SDK   : Kotlin 2.x (K2 Compiler enabled)
+
+[CASCADING DEFAULTS]
+* UI Toolkit       : 100% Jetpack Compose (Declarative UI)
+
+* Navigation       : Navigation 3 (Nav3) or androidx.navigation:navigation-compose
+  - Why: Nav3 is the modern type-safe standard, multiplatform-ready backstack.
+
+* Architecture     : MVI (Model-View-Intent) or MVVM with Unidirectional Data Flow
+  - Why: Single source of truth via immutable UiState exposed through StateFlow.
+
+* DI Framework     : Koin (lightweight, pragmatic) or Hilt / Dagger (compile-time)
+
+* Networking       : Ktor Client or Retrofit 2 with Kotlinx Serialization
+  - Why: Coroutine-first, reflection-free, lightning-fast serialization.
+
+* Local Database   : Jetpack Room (with KSP)
+  - Why: Google standard relational SQLite ORM with reactive Flow<List<T>>.
+
+* Secure Storage   : EncryptedSharedPreferences (Jetpack Security) & Android KeyStore
+  - Why: Hardware-backed AES-256 GCM encryption for user tokens.
+
+* Concurrency      : Kotlin Coroutines & Reactive Flows
+
+
+================================================================================
+3️⃣ PRESET: KOTLIN MULTIPLATFORM (KMP)
+================================================================================
+• Target Platforms : Android, iOS, Desktop (JVM), Web (Wasm)
+• Language         : Kotlin Multiplatform
+
+[CASCADING DEFAULTS]
+* Shared UI        : Compose Multiplatform
+* Navigation       : Voyager or Decompose or Navigation Compose Multiplatform
+* Networking       : Ktor Client (OkHttp engine on Android, Darwin engine on iOS)
+* Local Database   : SQLDelight or Room KMP
+* State & Arch     : MVIKotlin or shared ViewModel (androidx.lifecycle.viewmodel)
+* DI Framework     : Koin Multiplatform
+
+
+================================================================================
+4️⃣ PRESET: SPRING BOOT (ENTERPRISE BACKEND)
+================================================================================
+• Runtime          : Java 21 LTS or Kotlin on JVM
+• Framework        : Spring Boot 3.x
+
+[CASCADING DEFAULTS]
+* API Layer        : Spring Web MVC (REST) with SpringDoc OpenAPI (Swagger UI)
+* Data Access      : Spring Data JPA + Hibernate
+* Database         : PostgreSQL (Production) / H2 (Testing)
+* Migrations       : Flyway (Version-controlled SQL migrations)
+* Security & Auth  : Spring Security 6 with Stateless JWT Filter (Access + Refresh)
+* Caching          : Spring Data Redis
+* Architecture     : Layered Hexagonal / Clean (controller -> service -> repo -> entity)
+
+
+================================================================================
+📋 INTERVIEW PROMPT TEMPLATE
+================================================================================
+When presenting tech stack options, the AI presents this exact concise message:
+
+"Which core framework are we using for this project?
+ 1. Flutter (Dart) [Cross-platform Mobile/Desktop]
+ 2. Kotlin Jetpack Compose [Modern Native Android with Nav3]
+ 3. Kotlin Multiplatform (KMP) [Shared Kotlin logic & UI]
+ 4. Spring Boot (Java / Kotlin) [Enterprise Scalable Backend]
+ 5. Other (Specify your preferred stack)
+
+(Reply with your choice, and I will instantly present the fully populated production stack for your approval!)"
+================================================================================

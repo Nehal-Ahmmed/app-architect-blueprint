@@ -1,0 +1,109 @@
+================================================================================
+🎨 UI IMPLEMENTATION: DESIGN ANALYSIS & COMPONENT-FIRST PROMPTS
+================================================================================
+
+[AI INSTRUCTION]
+When analyzing UI for any project, you MUST determine the input source first:
+• Mode A (Primary) : A UI Design Folder is provided (screenshots, mockups, Figma exports).
+• Mode B (Fallback): A Detailed Written Explanation is provided of what the app does.
+
+Your golden workflow:
+1. Scan designs or explanation.
+2. Extract Design Tokens (colors, fonts, radius, shadows).
+3. Create/Plan Reusable Components FIRST (Atomic Design: buttons, inputs, cards).
+4. Extract Page Inventory & Screen Layouts.
+5. Extract App Features visible in the UI.
+6. Generate a dedicated "04_UI_IMPLEMENTATION_PLAN.txt".
+
+--------------------------------------------------------------------------------
+⚡ SHORT UI DISCOVERY PROMPT
+--------------------------------------------------------------------------------
+Present this exact prompt to the user:
+
+"Let's configure the UI for your application:
+
+1. UI Source:
+   • [Option A]: Do you have a UI design folder with screenshots, mockups, or wireframes?
+                 (If yes, provide the folder path or files so I can inspect them directly!)
+   • [Option B]: No design folder? Please provide a detailed description of what the
+                 app looks like, its key pages, and what features it performs.
+
+2. Visual Style Preference (If not already explicit in your designs):
+   1. 🏺 Claymorphism (Soft, puffy 3D clay-like elements with inner/outer shadows)
+   2. 💎 Liquid Glassmorphism (Frosted glass blur, fluid gradients, luminous borders)
+   3. 🌫️ Neumorphism (Soft UI extruded surfaces with dual shadows)
+   4. ⚡ Clean Modern Minimal / Material 3 (High contrast, strict 8pt grid, clean cards)
+   5. 🌌 Dark Neon Glow (OLED black with glowing neon accents)
+
+3. Theme Preference:
+   • Dark Mode only, Light Mode only, or Adaptive (System default + manual toggle)?
+
+(Reply with your design source and preferences, and I will extract the components first, then map out all pages and features!)"
+
+
+================================================================================
+🧱 COMPONENT-FIRST EXTRACTION PROTOCOL (FROM DESIGNS)
+================================================================================
+
+When inspecting the UI design folder or detailed explanation, the AI MUST extract
+components in this exact order BEFORE planning full pages:
+
+Step 1: Extract Design Tokens
+• Primary, Secondary, Background, Surface, Border colors (Exact Hex codes).
+• Typography: Font families, font weights, scale (Display, Headline, Title, Body).
+• Spacing & Layout: 4dp/8dp baseline grid, card paddings (16dp).
+• Elevation / Corner Radii: e.g., 12px subtle radius or 28px puffy clay radius.
+
+Step 2: Extract Reusable Atoms & Molecules (Component-First)
+• Buttons      : Primary CTA, Outlined, Ghost, Icon button, Loading spinner button.
+• Text Inputs  : Standard field, search bar, dropdown selector, password with toggle,
+                 OTP verification boxes.
+• Containers   : Content card, product/item tile, summary header, segmented tabs.
+• Navigation   : Top AppBar with action icons, Bottom Navigation Bar with badge counters.
+• Overlays     : Bottom sheet modal, confirmation dialog, snackbar notification toast.
+
+Step 3: Extract Page Inventory from Designs
+• Analyze all screens provided in the design folder.
+• Name each page (e.g. Splash, Onboarding, Login, Feed, Search, Details, Cart, Profile).
+• Assign which reusable components from Step 2 are assembled into each page.
+
+Step 4: Extract Functional Features from Designs
+• Look at visible UI elements to deduce the app's features:
+  - Search bar + Filter icon  ──► Search & Filtering Feature
+  - Heart icon on items       ──► Favorites / Wishlist Feature
+  - Floating cart badge       ──► Shopping Cart & Checkout Feature
+  - Bell icon with unread dot ──► Push & In-App Notification Feature
+  - Camera icon on avatar     ──► Profile Image Upload Feature
+
+
+================================================================================
+📄 SEPARATE UI IMPLEMENTATION PLAN OUTPUT TEMPLATE
+================================================================================
+Generate this file into "decisions for this app/04_UI_IMPLEMENTATION_PLAN.txt":
+
+================================================================================
+UI IMPLEMENTATION PLAN: [APP NAME]
+================================================================================
+
+1. VISUAL DESIGN TOKENS
+• Color Palette    : Primary (#...), Background (#...), Surface (#...), Text (#...)
+• Typography Scale : Font Family: [...], Headline: 24sp, Body: 14sp
+• Corner Radius    : Cards: [..px], Buttons: [..px]
+• Visual Aesthetic : [Claymorphism / Liquid Glassmorphism / Clean Minimal / Custom]
+
+2. REUSABLE COMPONENT LIBRARY (COMPONENT-FIRST)
+• Button Components : [PrimaryButton, OutlinedButton, IconButton, LoadingButton]
+• Input Components  : [AppTextField, SearchBarField, DropdownField, OtpBox]
+• Card Components   : [ItemCard, MetricCard, UserProfileTile]
+• Navigation & Bars : [CustomAppBar, BottomNavBar, SegmentedFilterBar]
+• Modal Overlays    : [DraggableBottomSheet, ConfirmationDialog, FloatingToast]
+
+3. SCREEN PAGE INVENTORY (ASSEMBLED FROM COMPONENTS)
+• Screen 1: [Screen Name] (Components used: ..., Layout hierarchy: ...)
+• Screen 2: [Screen Name] (Components used: ..., Layout hierarchy: ...)
+• Screen 3: [Screen Name] (Components used: ..., Layout hierarchy: ...)
+
+4. RESPONSIVENESS & THEME SUPPORT
+• Phone vs Tablet adaptations (1-column vs multi-pane / navigation rail)
+• Dark & Light mode semantic color mapping table
+================================================================================

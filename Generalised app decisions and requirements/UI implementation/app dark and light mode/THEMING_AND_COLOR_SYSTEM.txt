@@ -1,0 +1,43 @@
+================================================================================
+🌗 UI IMPLEMENTATION: DARK & LIGHT MODE THEMING
+================================================================================
+
+[AI INSTRUCTION]
+Ensure all color declarations use Semantic Tokens rather than hardcoded hex values.
+This guarantees flawless switching between Light Mode, Dark Mode, and System Default.
+
+--------------------------------------------------------------------------------
+🎨 1. SEMANTIC COLOR TOKENS
+--------------------------------------------------------------------------------
+
+Never use raw colors like Colors.black or Color.White directly in UI widgets.
+Map all styling through these semantic tokens:
+
++------------------+------------------+------------------+---------------------+
+| Semantic Token   | Light Mode       | Dark Mode        | Usage Description   |
++------------------+------------------+------------------+---------------------+
+| background       | #F8FAFC          | #0F172A          | Base window canvas  |
+| surface          | #FFFFFF          | #1E293B          | Cards, sheets, bars |
+| surfaceSubtle    | #F1F5F9          | #334155          | Secondary chip/box  |
+| textPrimary      | #0F172A          | #F8FAFC          | High-contrast text  |
+| textSecondary    | #64748B          | #94A3B8          | Subtitles, captions |
+| primary          | Brand Accent     | Lightened Accent | CTAs, active states |
+| border           | #E2E8F0          | #334155          | Dividers, borders   |
+| error            | #EF4444          | #F87171          | Destructive/errors  |
+| success          | #10B981          | #34D399          | Confirmations       |
++------------------+------------------+------------------+---------------------+
+
+--------------------------------------------------------------------------------
+🔄 2. THEME SWITCHING ARCHITECTURE
+--------------------------------------------------------------------------------
+
+[OS System Mode] ──┐
+                   ▼
+[User Preference] ──► [Theme Manager State] ──► [Persist in Local Storage]
+                              │
+                              ▼
+                      [App UI Rebuild (0ms Zero Glitch)]
+
+• Modes Supported : 1. System Default (auto-detects OS), 2. Light, 3. Dark.
+• Persistence     : Stored in local settings cache so app launches without flash.
+================================================================================

@@ -1,0 +1,53 @@
+================================================================================
+📋 PRODUCT REQUIREMENTS DOCUMENT (PRD): INTERVIEW & TEMPLATE
+================================================================================
+
+[AI INSTRUCTION]
+Use this questionnaire during Stage 1 of the interview to extract crystal-clear
+product requirements from the user. After the user answers, synthesize the
+information into the PRD Template below and output it into
+"decisions for this app/01_PROJECT_OVERVIEW_AND_PRD.txt".
+
+--------------------------------------------------------------------------------
+🎙️ 1. SHORT PRD DISCOVERY QUESTIONNAIRE
+--------------------------------------------------------------------------------
+Ask these 4 targeted questions:
+1. App Summary: What is the name of the app and what core problem does it solve?
+2. Target Audience: Who is the ideal user (students, professionals, general public)?
+3. Core Value Proposition: What makes this app unique or superior to alternatives?
+4. MVP Scope vs Future: What are the top 3-5 features required for Version 1.0 (MVP),
+   and what can be deferred to Version 2.0?
+
+
+--------------------------------------------------------------------------------
+📄 2. PRD OUTPUT TEMPLATE (FOR "decisions for this app/")
+--------------------------------------------------------------------------------
+
+================================================================================
+PRODUCT REQUIREMENTS DOCUMENT (PRD): [APP NAME]
+================================================================================
+
+1. EXECUTIVE SUMMARY
+• App Name        : [App Name]
+• Core Mission    : [One-sentence mission statement]
+• Target Platforms: [Mobile (Android/iOS) / Web / Desktop]
+
+2. TARGET USER PERSONAS
+• Primary Persona : [Demographics, goals, pain points]
+• Key Use Cases   : [Primary workflows user performs]
+
+3. PRODUCT SCOPE BREAKDOWN
+[Phase 1: MVP (Minimum Viable Product)]
+• Feature 1 : [Description & user outcome]
+• Feature 2 : [Description & user outcome]
+• Feature 3 : [Description & user outcome]
+
+[Phase 2: Future Roadmap]
+• Feature 4 : [Description]
+• Feature 5 : [Description]
+
+4. KEY PERFORMANCE INDICATORS (KPIS)
+• Performance target : App cold startup < 1.5 seconds.
+• Offline reliability: Seamless offline access for core cached workflows.
+• Crash-free sessions: > 99.9% crash-free user sessions.
+================================================================================

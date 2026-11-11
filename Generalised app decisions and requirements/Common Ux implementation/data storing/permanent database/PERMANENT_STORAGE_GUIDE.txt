@@ -1,0 +1,48 @@
+================================================================================
+💾 COMMON UX: PERMANENT DATABASE STORAGE
+================================================================================
+
+[AI INSTRUCTION]
+Define local database architecture, schema migrations, and reactive querying patterns.
+
+--------------------------------------------------------------------------------
+🏛️ 1. DATABASE SELECTION & CHARACTERISTICS
+--------------------------------------------------------------------------------
+
++--------------------+---------------+--------------------+--------------------+
+| Technology         | Platform      | Model Type         | Best Used For      |
++--------------------+---------------+--------------------+--------------------+
+| Isar / Hive        | Flutter       | Fast NoSQL Store   | High-speed objects,|
+|                    |               |                    | offline-first apps |
++--------------------+---------------+--------------------+--------------------+
+| Drift              | Flutter       | Relational SQLite  | Complex joins,     |
+|                    |               |                    | strict foreign keys|
++--------------------+---------------+--------------------+--------------------+
+| Jetpack Room       | Android Native| Relational SQLite  | Compile-time SQL,  |
+|                    |               |                    | reactive Flow      |
++--------------------+---------------+--------------------+--------------------+
+| SQLDelight         | KMP           | Multiplatform SQL  | Cross-platform SQL |
++--------------------+---------------+--------------------+--------------------+
+| PostgreSQL         | Backend       | Relational SQL     | Enterprise ACID    |
++--------------------+---------------+--------------------+--------------------+
+
+
+--------------------------------------------------------------------------------
+🔄 2. SCHEMA MIGRATION STRATEGY
+--------------------------------------------------------------------------------
+
+• Versioned Migrations: Every DB schema upgrade must have an explicit integer
+  version (v1 -> v2 -> v3).
+• Destructive Fallback Forbidden: Never invoke destructive fallback in production.
+  Always write an explicit SQL alter table or data migration script.
+
+
+--------------------------------------------------------------------------------
+📡 3. REACTIVE UI SYNCHRONIZATION
+--------------------------------------------------------------------------------
+
+• Queries must return reactive streams (e.g. Stream<List<T>> in Flutter or
+  Flow<List<T>> in Kotlin).
+• When background synchronization inserts or updates rows, the UI must
+  automatically update without full-screen refreshes.
+================================================================================

@@ -1,0 +1,44 @@
+================================================================================
+🔐 COMMON UX: SECURED STORAGE & KEYSTORE ENCRYPTION
+================================================================================
+
+[AI INSTRUCTION]
+Strictly enforce that sensitive credentials (tokens, biometric keys, PII) are
+stored ONLY in encrypted, hardware-backed secure storage. Never save auth tokens
+or passwords in plain SharedPreferences or standard databases.
+
+--------------------------------------------------------------------------------
+🛡️ 1. DATA CLASSIFICATION
+--------------------------------------------------------------------------------
+
+[Store in SECURE Storage (Encrypted)]
+• JWT Access Tokens & Refresh Tokens
+• API Secret Keys / Third-party credentials
+• Biometric unlock verification tokens
+• Private encryption keys / Seed phrases
+
+[Store in STANDARD Local Storage]
+• Cached API responses and feed items
+• UI Theme mode (Dark/Light) preferences
+• General non-sensitive application settings
+
+
+--------------------------------------------------------------------------------
+🔒 2. HARDWARE-BACKED PLATFORM MECHANISMS
+--------------------------------------------------------------------------------
+
+• Android : Android KeyStore Provider with TEE / StrongBox hardware backing.
+            EncryptedSharedPreferences with AES256_GCM cipher.
+• iOS     : iOS Keychain Services with kSecAttrAccessibleAfterFirstUnlock.
+            Keys never leave the Apple Secure Enclave hardware chip.
+
+
+--------------------------------------------------------------------------------
+🚨 3. LOGOUT & SESSION INVALIDATION PROTOCOL
+--------------------------------------------------------------------------------
+
+When the user logs out, or when a session invalidation signal is received:
+1. Immediately invoke secureStorage.deleteAll()
+2. Clear in-memory caches and sensitive variables.
+3. Reset app route to the login screen with a completely cleared navigation backstack.
+================================================================================

@@ -1,0 +1,62 @@
+================================================================================
+🧩 APP FEATURES IMPLEMENTATION: INCREMENTAL FEATURE PLANNING
+================================================================================
+
+[AI INSTRUCTION & DEVELOPMENT GOLDEN RULE]
+Never build an entire system or feature at once. Always decompose every feature
+into controlled, verifiable iterations following the strict Module -> Phase -> Step
+hierarchy.
+
+--------------------------------------------------------------------------------
+🏗️ 1. THE DEVELOPMENT APPROACH HIERARCHY
+--------------------------------------------------------------------------------
+
+Every feature implementation plan must be structured identically to this format:
+
+Module 1: [Core Module Name]
+  Phase 1: [Foundation / Domain Layer]
+    Step 1: [Entity & Contract Definitions]
+    Step 2: [Database Migration & DAO]
+
+  Phase 2: [Data & Network Layer]
+    Step 1: [Remote Data Source & DTO Mappings]
+    Step 2: [Repository Implementation & Error Handling]
+
+  Phase 3: [Presentation & State Management]
+    Step 1: [State Controller / ViewModel & UiState]
+    Step 2: [UI Widgets, Screen Layout & Theme Binding]
+
+Module 2: [Next Module Name]
+  Phase 1: ...
+
+
+--------------------------------------------------------------------------------
+📖 2. FEATURE IMPLEMENTATION GUIDE STRUCTURE
+--------------------------------------------------------------------------------
+
+When generating an implementation plan or feature guide, you MUST follow this
+exact 5-point premium structure:
+
+1. 🗺️ High-Level Roadmap:
+   A numbered list of the core steps taken across the modules.
+
+2. 🧠 Logical Descriptions ("Simple vs. Technical"):
+   • Simple Explanation   : Explains what the feature does in clear, plain language.
+   • Technical Explanation: Explains the exact architectural data flow, reactive
+                            streams, state transitions, and thread dispatching across
+                            both Frontend and Backend layers.
+
+3. 💻 Full Implementation Code:
+   Provide the FULL, production-ready, copy-pasteable source code for EVERY file
+   involved without lazy placeholders or truncated logic:
+   • Backend : pom.xml / build.gradle, Entities, Repositories, DTOs, Services, Controllers.
+   • Frontend: Entities, Repositories, Data Sources, State Notifiers / ViewModels, and UI Pages.
+
+4. 🛠️ Extra Steps:
+   Database migrations, environment variables, API secret keys, device permission
+   manifest entries, and specific run instructions.
+
+5. 📝 Summary:
+   A concise workflow summary diagram illustrating how data flows from user UI
+   interaction to database persistence and back.
+================================================================================

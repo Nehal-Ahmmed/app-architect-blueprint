@@ -1,0 +1,60 @@
+================================================================================
+📄 UI IMPLEMENTATION: APP PAGES & LAYOUT ARCHITECTURE
+================================================================================
+
+[AI INSTRUCTION]
+When inspecting the UI design folder or reading the detailed app explanation:
+1. Reverse-engineer the full list of distinct pages/screens.
+2. Delineate what features exist on each page.
+3. Standardize screen layout scaffolds using the template below.
+
+--------------------------------------------------------------------------------
+🔍 1. REVERSE-ENGINEERING PAGES & FEATURES FROM DESIGNS
+--------------------------------------------------------------------------------
+
+[Visual Inspection of Design Screens]
+           │
+           ├──► Identify Screen Name (e.g. ProductsFeedScreen, CartCheckoutScreen)
+           ├──► Identify Reusable Components used on this screen
+           ├──► Deduce Functional Features:
+           │      • Filters / Search / Sorting
+           │      • Actions (Add to Cart, Checkout, Bookmark, Share)
+           │      • Visual states (Loading shimmer, Empty state, Success modal)
+           └──► Map Route Path (e.g., /products, /products/:id, /checkout)
+
+
+--------------------------------------------------------------------------------
+🏛️ 2. MASTER SCREEN SCAFFOLD PATTERN
+--------------------------------------------------------------------------------
+
+[Screen Scaffolding]
+├── Safe Area & Insets (Top status bar & bottom navigation bar handling)
+├── Top App Bar (Title, Navigation back button, Trailing action icons)
+├── Body Viewport (SingleChildScrollView or CustomScrollView with Slivers)
+│   ├── Responsive Content Container (Max width constraint for tablets/web)
+│   └── RefreshIndicator (Pull-to-refresh where applicable)
+├── Floating Action Button / Sticky Bottom Action Bar
+└── Global Modal Overlay (Full-screen loading indicator or Offline banner)
+
+
+--------------------------------------------------------------------------------
+📱 3. ESSENTIAL PAGE TEMPLATES
+--------------------------------------------------------------------------------
+
+1. Splash & Auth Flow
+   • Splash Screen : Brand logo centered, animated entrance, initialization checks
+                     (auth token validation, database migration, remote config).
+   • Onboarding    : 3-4 feature slides with dot indicator, "Skip" / "Get Started".
+   • Login/Register: Clean form layout, social auth buttons (Google/Apple),
+                     password visibility toggle, auto-scroll when keyboard opens.
+
+2. Main Dashboard (Shell Navigation)
+   • Persistent Bottom Navigation Bar (3 to 5 destinations).
+   • Unread badge counts on relevant navigation icons.
+   • Preserve scroll position across tab transitions.
+
+3. Detail & Form Pages
+   • Hero transitions for images/avatars between list and detail view.
+   • Sticky bottom CTA button that floats above the software keyboard.
+   • Unsaved changes confirmation dialog if user taps back with a dirty form.
+================================================================================

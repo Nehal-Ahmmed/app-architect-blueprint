@@ -1,0 +1,84 @@
+================================================================================
+🧭 COMMON UX: UX IMPLEMENTATION PLAN FRAMEWORK
+================================================================================
+
+[AI INSTRUCTION]
+The user requires a completely SEPARATE UX Implementation Plan alongside the UI Plan.
+When inspecting the UI design folder or reading the detailed app explanation, you MUST
+deduce how the user interacts with every element and generate
+"decisions for this app/05_UX_IMPLEMENTATION_PLAN.txt".
+
+--------------------------------------------------------------------------------
+🔄 1. UX EXTRACTION METHODOLOGY (FROM DESIGNS OR EXPLANATION)
+--------------------------------------------------------------------------------
+
+While the UI Plan defines *how things look and what components to build*,
+the UX Plan defines *how things feel, behave, transition, and handle edge cases*:
+
+1. Map User Journeys:
+   • Trace the user's primary paths through the screens identified in the design.
+   • E.g.: Onboarding -> Auth (Login/OTP) -> Home Dashboard -> Search/Filter ->
+           Item Details -> Primary Action (Checkout/Save/Submit) -> Confirmation.
+
+2. Interaction States (Every Screen Must Have All 4 States Defined):
+   • Loading State   : Define skeleton shimmer loaders matching the card shapes in UI.
+   • Empty State     : Define what shows when no data exists (e.g., empty cart, no
+                       search results, no favorites) with a clear call-to-action.
+   • Error State     : Define field error messages, network timeout banners, and
+                       "Tap to Retry" button behavior.
+   • Success / Normal: Standard populated screen.
+
+3. Form Validation & Feedback UX:
+   • Instant inline validation on blur or as user types (with debounce).
+   • Disable primary CTA button during async network submission + show spinner.
+   • Light haptic feedback on successful action or error shake on invalid input.
+
+4. Navigation Transitions & Gestures:
+   • Swipe-to-dismiss for modal bottom sheets and toast banners.
+   • Shared element / Hero transition between list cards and detail views.
+   • Android system back button hierarchy (sub-screen -> tab root -> home tab -> exit).
+
+5. Permissions & Hardware UX:
+   • Contextual rationale modal displayed before invoking system camera/location prompts.
+   • Clear fallback path if user denies permission (e.g. manual address search).
+
+6. Offline Usability UX:
+   • Display subtle non-intrusive offline pill/banner when connection drops.
+   • Render cached local database content instantly with a "Viewing cached data" tag.
+
+
+--------------------------------------------------------------------------------
+📄 2. SEPARATE UX IMPLEMENTATION PLAN OUTPUT TEMPLATE
+--------------------------------------------------------------------------------
+Generate this file into "decisions for this app/05_UX_IMPLEMENTATION_PLAN.txt":
+
+================================================================================
+UX IMPLEMENTATION PLAN: [APP NAME]
+================================================================================
+
+1. CORE USER JOURNEYS & NAVIGATION FLOW
+• Journey 1 (Onboarding & Auth)  : [Step-by-step route flow and guards]
+• Journey 2 (Primary Core Flow) : [Step-by-step path from discovery to action]
+• Journey 3 (Secondary Flow)    : [Settings, profile, management workflows]
+
+2. SCREEN INTERACTION & STATE SPECIFICATIONS
++------------------+-----------------------+---------------------+---------------------+
+| Screen Name      | Loading UX (Skeleton) | Empty State UX      | Error & Retry UX    |
++------------------+-----------------------+---------------------+---------------------+
+| [Screen 1]       | [Card shimmer layout] | [Illustration+CTA]  | [Banner + Retry btn]|
+| [Screen 2]       | [List shimmer layout] | [Illustration+CTA]  | [Banner + Retry btn]|
++------------------+-----------------------+---------------------+---------------------+
+
+3. MICRO-INTERACTIONS & FEEDBACK
+• Touch Feedback    : Haptic light impact on button press and tab switch.
+• Form Submissions  : Button locks with loading spinner; toast on completion.
+• Gestures          : Pull-to-refresh on scrollable feeds, swipe to dismiss sheets.
+
+4. PERMISSIONS & HARDWARE RATIONALE UX
+• Camera / Photos   : Custom rationale dialog explaining why -> OS prompt -> fallback.
+• Notifications     : Triggered contextually after first milestone action.
+
+5. OFFLINE & RESILIENCY UX
+• Offline Indicator : Floating banner "You are offline. Showing cached results."
+• Background Sync   : Auto-refresh cache silently when network reconnects.
+================================================================================
