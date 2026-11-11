@@ -40,18 +40,10 @@ Example for Flutter:
   • State Mgmt  : Riverpod (v2 + code gen)
   • Navigation  : GoRouter
   • Network     : Dio + Retrofit
-  • Local DB    : Isar (or Hive CE)
+  • Local DB    : Isar (or Drift/Hive)
   • Secure Store: flutter_secure_storage
   • Models      : Freezed + JsonSerializable
-
-Example for Kotlin Jetpack Compose:
-  • UI & Lang   : Jetpack Compose + Kotlin 2.x
-  • Navigation  : Navigation 3 (Nav3)
-  • Architecture: MVI / MVVM with StateFlow
-  • DI          : Koin (or Hilt)
-  • Network     : Ktor Client (or Retrofit)
-  • Local DB    : Room (KSP)
-  • Secure Store: EncryptedSharedPreferences
+  • Responsive  : 100% Native (LayoutBuilder, Breakpoints 600/840/1200dp - NO ScreenUtil)
 
 Then ask:
 "Do you want to change any of these? (Reply 'Yes' with your change, or 'Confirm')"
@@ -80,8 +72,8 @@ This blueprint operates in CONTINUOUS SELF-LEARNING MODE:
    ObjectBox, Koin, etc.) that was not previously in the defaults:
    • Immediately record it in the TRD catalogs.
    • Add it to the recommendation system for all future apps.
-2. Whenever a new UI transition or animation pattern is proven:
-   • Record its curves and durations into 'COMPONENTS_SPEC_GUIDE.txt'.
+2. You have FULL PERMISSION to create deep nested subfolders (folders/sub/sub/sub)
+   for strict modularity.
 3. Sync & push updates back to the master repository:
    https://github.com/Nehal-Ahmmed/app-architect-blueprint
 
@@ -92,7 +84,7 @@ STEP 3: GENERATE "decisions for this app/APP_DEVELOPMENT_FLOW.txt"
 Upon user confirmation, write this single master tracking file into:
 "decisions for this app/APP_DEVELOPMENT_FLOW.txt"
 
-Format must use clean, expandable/shrinkable boxes with tick-boxes [ ] / [x]:
+Every implementation phase MUST track its dedicated Plan File with tick boxes:
 
 +------------------------------------------------------------------------------+
 | 📦 [CARD 1: PROJECT SUMMARY]                                                 |
@@ -102,21 +94,23 @@ Format must use clean, expandable/shrinkable boxes with tick-boxes [ ] / [x]:
 +------------------------------------------------------------------------------+
 
 +------------------------------------------------------------------------------+
-| 📋 [CARD 2: SERIAL IMPLEMENTATION PROGRESS]                                  |
-| [ ] Plan 1: UI Components Creation (Pixel-Perfect from Design + Animations)   |
-| [ ] Plan 2: UI Pages Assembly (Same-to-Same Screens + Page Shift Animations) |
-| [ ] Plan 3: Feature Data Layer (DTOs, API, Repositories)                     |
-| [ ] Plan 4: Feature Domain Layer (Entities, UseCases)                        |
-| [ ] Plan 5: Feature Presentation Layer & UI Connection (Fully Functional)   |
+| 📋 [CARD 2: SERIAL IMPLEMENTATION PLANS & EXECUTION TRACKING]                 |
+| [ ] 01_components_implementation_plan.md                                     |
+| [ ] 02_screens_and_navigation_implementation_plan.md                         |
+| [ ] 03_data_layer_implementation_plan.md                                     |
+| [ ] 04_domain_layer_implementation_plan.md                                   |
+| [ ] 05_presentation_and_binding_implementation_plan.md                       |
 +------------------------------------------------------------------------------+
 
 
 --------------------------------------------------------------------------------
-STEP 4: OUTPUT THE 5 SEPARATE CHAT PROMPTS (COPY-PASTE READY)
+STEP 4: OUTPUT THE 5 SEPARATE CHAT PROMPTS (PLAN-FIRST WORKFLOW)
 --------------------------------------------------------------------------------
 Inform the user:
 "Do not implement the whole app in this chat. Open a new chat for each phase,
-paste the prompt below, and point the new chat to APP_DEVELOPMENT_FLOW.txt."
+paste the prompt below, and point the new chat to APP_DEVELOPMENT_FLOW.txt.
+Each chat will FIRST create its comprehensive implementation plan file (.md)
+before coding, and tick [x] upon completion."
 
 Provide these 5 exact prompts:
 
@@ -124,47 +118,67 @@ Provide these 5 exact prompts:
 "You are Impl Chat 01.
 Task: Create all reusable UI components based on the design folder.
 1. Read 'decisions for this app/APP_DEVELOPMENT_FLOW.txt'.
-2. Inspect the design files at [Design Path].
-3. Extract and code all reusable components FIRST (buttons, text fields, cards,
+2. FIRST: Create the implementation plan file:
+   'decisions for this app/01_components_implementation_plan.md'
+   following strict Module -> Phase -> Step structure.
+3. Inspect the design files at [Design Path].
+4. Extract and code all reusable components FIRST (buttons, text fields, cards,
    dialogs, app bars, design tokens).
-4. MANDATE: Must be 100% SAME-TO-SAME / PIXEL-PERFECT to the design.
-5. Add tactile micro-interactions to buttons (press scale 0.96, ripple, haptics).
-6. When done, update Plan 1 to [x] in APP_DEVELOPMENT_FLOW.txt."
+5. MANDATE: 100% SAME-TO-SAME / PIXEL-PERFECT to the design.
+6. Add tactile micro-interactions to buttons (press scale 0.96, ripple, haptics).
+7. When code is implemented and verified, update [ ] to [x] beside
+   '01_components_implementation_plan.md' in APP_DEVELOPMENT_FLOW.txt."
 
 [PROMPT 2: FOR "Impl Chat 02 - Pages & Screens"]
 "You are Impl Chat 02.
 Task: Assemble all UI pages and screens using the components from Impl Chat 01.
 1. Read 'decisions for this app/APP_DEVELOPMENT_FLOW.txt'.
-2. Inspect the design files at [Design Path].
-3. Build all UI screens/pages by assembling the pre-made components.
-4. MANDATE: Pixel-perfect screen layout matching design mockups.
-5. Set up screen navigation routing with polished page slide/fade animations.
-6. When done, update Plan 2 to [x] in APP_DEVELOPMENT_FLOW.txt."
+2. FIRST: Create the implementation plan file:
+   'decisions for this app/02_screens_and_navigation_implementation_plan.md'
+   following strict Module -> Phase -> Step structure.
+3. Inspect the design files at [Design Path].
+4. Assemble all UI screens/pages from pre-made components with mock data.
+5. MANDATE: 100% Native Responsive (NO ScreenUtil). Use LayoutBuilder, Breakpoints.
+6. Set up screen navigation routing with polished page slide/fade animations.
+7. When code is implemented and verified, update [ ] to [x] beside
+   '02_screens_and_navigation_implementation_plan.md' in APP_DEVELOPMENT_FLOW.txt."
 
 [PROMPT 3: FOR "Impl Chat 03 - Data Layer"]
 "You are Impl Chat 03.
 Task: Implement the Feature-First Data Layer.
 1. Read 'decisions for this app/APP_DEVELOPMENT_FLOW.txt'.
-2. Code all DTOs / models with serialization.
-3. Implement API services, remote data sources, local database DAOs, and
+2. FIRST: Create the implementation plan file:
+   'decisions for this app/03_data_layer_implementation_plan.md'
+   following strict Module -> Phase -> Step structure.
+3. Code all DTOs / models with serialization.
+4. Implement API services, remote data sources, local database DAOs, and
    repository implementations.
-4. When done, update Plan 3 to [x] in APP_DEVELOPMENT_FLOW.txt."
+5. When code is implemented and verified, update [ ] to [x] beside
+   '03_data_layer_implementation_plan.md' in APP_DEVELOPMENT_FLOW.txt."
 
 [PROMPT 4: FOR "Impl Chat 04 - Domain Layer"]
 "You are Impl Chat 04.
 Task: Implement the Feature-First Domain Layer.
 1. Read 'decisions for this app/APP_DEVELOPMENT_FLOW.txt'.
-2. Code pure domain entities and abstract repository contracts.
-3. Code single-responsibility UseCases / Interactors for all app features.
-4. When done, update Plan 4 to [x] in APP_DEVELOPMENT_FLOW.txt."
+2. FIRST: Create the implementation plan file:
+   'decisions for this app/04_domain_layer_implementation_plan.md'
+   following strict Module -> Phase -> Step structure.
+3. Code pure domain entities and abstract repository contracts.
+4. Code single-responsibility UseCases / Interactors for all app features.
+5. When code is implemented and verified, update [ ] to [x] beside
+   '04_domain_layer_implementation_plan.md' in APP_DEVELOPMENT_FLOW.txt."
 
 [PROMPT 5: FOR "Impl Chat 05 - Presentation Layer & UI Connection"]
 "You are Impl Chat 05.
 Task: Implement ViewModels/State Notifiers and connect them to the UI pages.
 1. Read 'decisions for this app/APP_DEVELOPMENT_FLOW.txt'.
-2. Code ViewModels / Providers with immutable UiState (Loading, Error, Success).
-3. Connect the ViewModels to the existing UI Pages created in Impl Chat 02.
-4. Replace all mock data with real reactive streams/data flow.
-5. Verify that the app is 100% fully functional from UI to Database.
-6. When done, update Plan 5 to [x] in APP_DEVELOPMENT_FLOW.txt."
+2. FIRST: Create the implementation plan file:
+   'decisions for this app/05_presentation_and_binding_implementation_plan.md'
+   following strict Module -> Phase -> Step structure.
+3. Code ViewModels / Providers with immutable UiState (Loading, Error, Success).
+4. Connect the ViewModels to the existing UI Pages created in Impl Chat 02.
+5. Replace all mock data with real reactive streams/data flow (UI to Database).
+6. Verify end-to-end functionality across all screens.
+7. When code is implemented and verified, update [ ] to [x] beside
+   '05_presentation_and_binding_implementation_plan.md' in APP_DEVELOPMENT_FLOW.txt."
 ================================================================================

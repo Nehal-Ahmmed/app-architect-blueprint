@@ -21,6 +21,7 @@
 | • Local DB     : [DATABASE_LIBRARY]                                          |
 | • Secure Store : [SECURE_STORAGE_LIBRARY]                                    |
 | • Models/Serial: [SERIALIZATION_LIBRARY]                                     |
+| • UI Responsive: 100% Native (LayoutBuilder, Breakpoints 600/840/1200dp)     |
 | • DI Engine    : [DEPENDENCY_INJECTION_LIBRARY]                              |
 +------------------------------------------------------------------------------+
 
@@ -43,34 +44,32 @@
 +------------------------------------------------------------------------------+
 
 +------------------------------------------------------------------------------+
-| 📋 [CARD 4: SERIAL IMPLEMENTATION PROGRESS (TICK BOXES)]                     |
+| 📋 [CARD 4: IMPLEMENTATION PLANS & EXECUTION TRACKING (TICK BOXES)]          |
 |                                                                              |
-| [ ] Plan 1: UI Components Creation (From Design)                             |
-|     • Extract and build all atoms, buttons, text fields, cards, dialogs.     |
-|     • Chat: Impl Chat 01                                                     |
+| [ ] 01_components_implementation_plan.md                                     |
+|     • Scope    : Extract and build all atoms, buttons, text fields, cards.   |
+|     • Chat     : Impl Chat 01                                                |
 |                                                                              |
-| [ ] Plan 2: UI Pages & Screens Assembly (From Design)                        |
-|     • Assemble pre-made components into full screen layouts.                 |
-|     • Static mock data only; routing setup.                                  |
-|     • Chat: Impl Chat 02                                                     |
+| [ ] 02_screens_and_navigation_implementation_plan.md                         |
+|     • Scope    : Assemble pre-made components into full screen layouts.      |
+|     • Chat     : Impl Chat 02                                                |
 |                                                                              |
-| [ ] Plan 3: Feature Data Layer                                               |
-|     • DTO models with JSON serialization.                                    |
-|     • API services, remote sources, local DB DAOs, repositories impl.        |
-|     • Chat: Impl Chat 03                                                     |
+| [ ] 03_data_layer_implementation_plan.md                                     |
+|     • Scope    : DTOs, API services, local DB DAOs, repositories impl.       |
+|     • Chat     : Impl Chat 03                                                |
 |                                                                              |
-| [ ] Plan 4: Feature Domain Layer                                             |
-|     • Pure domain entities and abstract repository contracts.                |
-|     • Single-responsibility UseCases for all business logic.                 |
-|     • Chat: Impl Chat 04                                                     |
+| [ ] 04_domain_layer_implementation_plan.md                                   |
+|     • Scope    : Pure domain entities, repository contracts, UseCases.       |
+|     • Chat     : Impl Chat 04                                                |
 |                                                                              |
-| [ ] Plan 5: Feature Presentation Layer & UI Connection                       |
-|     • ViewModels / Providers with immutable UiState (Loading/Error/Success). |
-|     • Connect ViewModels to the UI pages created in Plan 2.                  |
-|     • Replace mock data with live streams; app is 100% fully functional.     |
-|     • Chat: Impl Chat 05                                                     |
+| [ ] 05_presentation_and_binding_implementation_plan.md                       |
+|     • Scope    : ViewModels/Providers, bind to UI screens, live data wiring. |
+|     • Chat     : Impl Chat 05                                                |
 +------------------------------------------------------------------------------+
 
-[INSTRUCTION FOR IMPL CHATS]:
-When your task is complete and verified, change your target [ ] into [x].
+[INSTRUCTION FOR ALL IMPL CHATS]:
+1. FIRST create your designated implementation plan file (.md) following the strict
+   Module -> Phase -> Step hierarchy.
+2. Implement and test the code step-by-step.
+3. Upon full completion and verification, update your target [ ] into [x] above.
 ================================================================================
