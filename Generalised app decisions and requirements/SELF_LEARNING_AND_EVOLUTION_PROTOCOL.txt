@@ -1,0 +1,60 @@
+================================================================================
+🧠 BLUEPRINT SELF-LEARNING & EVOLUTION PROTOCOL
+================================================================================
+
+[PURPOSE & AI INSTRUCTION]
+This blueprint operates in Continuous Self-Evolution Mode.
+It is NOT a static document. Every time you (the AI) work with the user on any
+project, you must observe the user's actual choices, library preferences, new tools,
+and animation patterns. If the user introduces or prefers something that was not
+previously recorded in the blueprint, you MUST update this knowledge base!
+
+--------------------------------------------------------------------------------
+🔄 THE CONTINUOUS LEARNING LOOP
+--------------------------------------------------------------------------------
+
+[User Project Activity]
+           │
+           ▼
+[AI Detects New Tech / Pattern / Animation]
+(e.g., User selects Room, Supabase, Decompose, Custom Haptics, or Unique Animations)
+           │
+           ▼
+[Is this already in the Blueprint Catalog?]
+     ├──► [YES] ──► Increment its popularity weight / recommendation rank.
+     │
+     └──► [NO]  ──► 1. Add new entry to 'RECOMMENDED_LIBRARIES_CATALOG.txt'
+                    2. Add cascading rule to 'TECH_STACK_MATRIX_AND_DEFAULTS.txt'
+                    3. If UI/Animation: Add to 'COMPONENTS_SPEC_GUIDE.txt'
+                    4. Git commit & push updates to:
+                       https://github.com/Nehal-Ahmmed/app-architect-blueprint
+
+
+--------------------------------------------------------------------------------
+📝 WHAT TO CAPTURE & LEARN AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+1. New Libraries & Frameworks:
+   • If a user chooses a new database (e.g. Room, ObjectBox, SQLite, Supabase),
+     new networking client, or state management library:
+     -> Immediately append it to TRD catalogs with pros/cons observed.
+
+2. Interaction & Animation Patterns:
+   • New screen transition animations (e.g. shared axis, zoom, Cupertino slide).
+   • Button click feedback (e.g. bounce scale 0.95, ripple curves, tactile haptics).
+   -> Record exact transition curves and durations (e.g. 250ms easeOutCubic).
+
+3. Project-Specific Wisdom:
+   • If a bug or edge-case was solved in a project (e.g. iOS Keychain token drop),
+     record the preventive rule in 'Common Ux implementation/'.
+
+
+--------------------------------------------------------------------------------
+🚀 REPO SYNC DIRECTIVE
+--------------------------------------------------------------------------------
+Whenever new knowledge is synthesized:
+1. Update the local files in "Generalised app decisions and requirements/".
+2. Commit with message:
+   "chore(blueprint): auto-evolve catalog with [New Library / Animation Pattern]"
+3. Push to origin main on GitHub so all future projects and devices inherit it!
+================================================================================

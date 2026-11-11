@@ -2,10 +2,10 @@
 🧩 UI IMPLEMENTATION: APP COMPONENTS DESIGN SYSTEM
 ================================================================================
 
-[AI INSTRUCTION & COMPONENT-FIRST RULE]
-When inspecting the project's UI design folder (or reading the detailed app explanation),
-you MUST extract and plan all reusable components FIRST before designing any full screen.
-Pages must be composed by assembling these pre-planned atomic and molecular components.
+[AI INSTRUCTION & COMPONENT-FIRST MANDATE]
+When inspecting the project's UI design folder, you MUST extract and plan all
+reusable components FIRST before designing any full screen.
+MANDATE: Every component MUST be 100% SAME-TO-SAME / PIXEL-PERFECT to the design.
 Never write ad-hoc button or input styling directly inside page widgets.
 
 --------------------------------------------------------------------------------
@@ -15,7 +15,8 @@ Never write ad-hoc button or input styling directly inside page widgets.
 [UI Design Folder / App Explanation]
            │
            ▼
-[Step 1: Scan all screens & identify common visual patterns]
+[Step 1: Scan all screens & extract exact design tokens]
+  • Exact Hex colors, font sizes, corner radiuses, border widths, shadow elevations.
            │
            ▼
 [Step 2: Extract & Build Reusable Component Library FIRST]
@@ -29,13 +30,28 @@ Never write ad-hoc button or input styling directly inside page widgets.
 
 
 --------------------------------------------------------------------------------
-🧱 2. CORE COMPONENT CATALOG & SPECIFICATIONS
+✨ 2. BUTTON MICRO-INTERACTIONS & MOTION RULES
+--------------------------------------------------------------------------------
+
+Every button and interactive card MUST implement tactile motion:
+1. Press Scale Down:
+   • On pointer down: scale down to 0.96 (using AnimatedScale or transform).
+   • On pointer up/release: spring back to 1.0 (Duration: 120ms curve: Curves.easeOutCubic).
+2. Haptic Feedback:
+   • Trigger HapticFeedback.lightImpact() on successful tap.
+3. Ripple / Splash:
+   • Bounded or unbounded material splash matching the component's border radius.
+4. Loading State:
+   • Built-in spinner replaces label when async execution is active; button is locked.
+
+
+--------------------------------------------------------------------------------
+🧱 3. CORE COMPONENT CATALOG & SPECIFICATIONS
 --------------------------------------------------------------------------------
 
 1. Buttons & Call-to-Actions (CTAs)
    • Primary Button   : Full brand accent, minimum touch target height 48dp
                         (WCAG accessible), rounded radius matching design style.
-                        Must support loading spinner state.
    • Outlined Button  : 1.5px border matching primary accent, transparent background.
    • Ghost / Text     : Transparent background, text highlight with ripple effect.
    • Icon Button      : Symmetrical touch target (min 44x44dp), tooltipped on long press.
@@ -61,7 +77,7 @@ Never write ad-hoc button or input styling directly inside page widgets.
 
 
 --------------------------------------------------------------------------------
-📏 3. DESIGN TOKENS MATRIX
+📏 4. DESIGN TOKENS MATRIX
 --------------------------------------------------------------------------------
 
 +--------------------+---------------------------------------------------------+

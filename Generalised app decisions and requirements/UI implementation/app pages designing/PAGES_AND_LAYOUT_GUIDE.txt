@@ -3,28 +3,43 @@
 ================================================================================
 
 [AI INSTRUCTION]
-When inspecting the UI design folder or reading the detailed app explanation:
-1. Reverse-engineer the full list of distinct pages/screens.
-2. Delineate what features exist on each page.
-3. Standardize screen layout scaffolds using the template below.
+When assembling screens from design files:
+1. Every screen layout must match the design mockups 100% SAME-TO-SAME.
+2. Every interactive button must have its navigation destination explicitly mapped.
+3. Every page shift / transition must use smooth, specified animations (Hero, Slide).
 
 --------------------------------------------------------------------------------
-🔍 1. REVERSE-ENGINEERING PAGES & FEATURES FROM DESIGNS
+🎬 1. PAGE TRANSITION & SCREEN SHIFT ANIMATION RULES
 --------------------------------------------------------------------------------
 
-[Visual Inspection of Design Screens]
-           │
-           ├──► Identify Screen Name (e.g. ProductsFeedScreen, CartCheckoutScreen)
-           ├──► Identify Reusable Components used on this screen
-           ├──► Deduce Functional Features:
-           │      • Filters / Search / Sorting
-           │      • Actions (Add to Cart, Checkout, Bookmark, Share)
-           │      • Visual states (Loading shimmer, Empty state, Success modal)
-           └──► Map Route Path (e.g., /products, /products/:id, /checkout)
+Never use abrupt or instant screen jumps. Use defined page route transitions:
+1. Horizontal Slide & Parallax:
+   • Forward Navigation : New page slides in from Right (Curve: Curves.easeOutCubic, 280ms),
+                          previous page recedes slightly with subtle dimming.
+   • Back Navigation    : Top page slides out to Right, revealing previous page.
+2. Shared Element (Hero) Transitions:
+   • Product cards, avatar images, and title text must smoothly expand/morph
+     into their full-size positions on the detail screen.
+3. Modal Bottom Sheet Slide-Up:
+   • Bottom sheets slide up smoothly from the bottom with background dimming (300ms).
+4. Tab Fade-Through / Cross-Fade:
+   • Switching bottom navigation tabs uses a 200ms subtle cross-fade to prevent jarring.
 
 
 --------------------------------------------------------------------------------
-🏛️ 2. MASTER SCREEN SCAFFOLD PATTERN
+🔍 2. BUTTON-TO-ACTION NAVIGATION MAPPING PLAN
+--------------------------------------------------------------------------------
+
+During page planning, every clickable element MUST be documented in this format:
+• Button [Name] ──► Action (Navigate to /route OR Open Modal OR Trigger Event)
+• Example:
+  - "Get Started" Button ──► Navigates to /auth/login with slide transition.
+  - "Filter" Icon Button  ──► Opens FilterModalBottomSheet with slide-up.
+  - "Profile Avatar"      ──► Navigates to /profile with Hero transition.
+
+
+--------------------------------------------------------------------------------
+🏛️ 3. MASTER SCREEN SCAFFOLD PATTERN
 --------------------------------------------------------------------------------
 
 [Screen Scaffolding]
@@ -35,26 +50,4 @@ When inspecting the UI design folder or reading the detailed app explanation:
 │   └── RefreshIndicator (Pull-to-refresh where applicable)
 ├── Floating Action Button / Sticky Bottom Action Bar
 └── Global Modal Overlay (Full-screen loading indicator or Offline banner)
-
-
---------------------------------------------------------------------------------
-📱 3. ESSENTIAL PAGE TEMPLATES
---------------------------------------------------------------------------------
-
-1. Splash & Auth Flow
-   • Splash Screen : Brand logo centered, animated entrance, initialization checks
-                     (auth token validation, database migration, remote config).
-   • Onboarding    : 3-4 feature slides with dot indicator, "Skip" / "Get Started".
-   • Login/Register: Clean form layout, social auth buttons (Google/Apple),
-                     password visibility toggle, auto-scroll when keyboard opens.
-
-2. Main Dashboard (Shell Navigation)
-   • Persistent Bottom Navigation Bar (3 to 5 destinations).
-   • Unread badge counts on relevant navigation icons.
-   • Preserve scroll position across tab transitions.
-
-3. Detail & Form Pages
-   • Hero transitions for images/avatars between list and detail view.
-   • Sticky bottom CTA button that floats above the software keyboard.
-   • Unsaved changes confirmation dialog if user taps back with a dirty form.
 ================================================================================
